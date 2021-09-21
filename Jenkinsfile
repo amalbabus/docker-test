@@ -1,17 +1,12 @@
 pipeline {
-	agent any
-	tools {
-        go 'Go'
+    agent {
+        docker { image 'node:14-alpine' }
     }
-    environment {
-        GO111MODULE = 'on'
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
     }
-	stages {
-		stage("build") {
-			steps {
-			echo "building the application"
-			sh 'go version'
-}
-}
-}
 }
